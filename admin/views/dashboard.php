@@ -6,22 +6,24 @@
  * @since 1.0.0
  */
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 // Optional success messages
-$messages = [
+$stcwca_messages = [
     'trend-refreshed' => __('Coverage trend data refreshed.', 'stcw-coverage-analytics'),
 ];
 
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of success message, no data processing
-$message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'])) : '';
+$stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'])) : '';
 ?>
 <div class="wrap">
     <h1><?php esc_html_e('Coverage Analytics', 'stcw-coverage-analytics'); ?></h1>
 
-    <?php if ($message_key && isset($messages[$message_key])): ?>
+    <?php if ($stcwca_message_key && isset($stcwca_messages[$stcwca_message_key])): ?>
         <div class="notice notice-success is-dismissible">
-            <p><?php echo esc_html($messages[$message_key]); ?></p>
+            <p><?php echo esc_html($stcwca_messages[$stcwca_message_key]); ?></p>
         </div>
     <?php endif; ?>
 
@@ -34,9 +36,9 @@ $message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'
                 <?php echo esc_html(number_format_i18n($coverage['coverage_percent'], 1)); ?>%
             </div>
             <div class="stcwca-label">
-                <?php
-                printf(
-                    /* translators: 1: Number of cached pages, 2: Total number of pages */
+		<?php
+		printf(
+		    /* translators: 1: Number of cached pages, 2: Total number of pages */
                     esc_html__('%1$s of %2$s pages', 'stcw-coverage-analytics'),
                     esc_html(number_format_i18n($coverage['cached_files'])),
                     esc_html(number_format_i18n($coverage['total_content']))
@@ -51,9 +53,9 @@ $message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'
                 <?php echo esc_html(number_format_i18n($coverage['total_content'])); ?>
             </div>
             <div class="stcwca-label">
-                <?php
-                printf(
-                    /* translators: 1: Number of posts, 2: Number of pages */
+		<?php
+		printf(
+		    /* translators: 1: Number of posts, 2: Number of pages */
                     esc_html__('%1$s posts, %2$s pages', 'stcw-coverage-analytics'),
                     esc_html(number_format_i18n($coverage['total_posts'])),
                     esc_html(number_format_i18n($coverage['total_pages']))
@@ -107,17 +109,17 @@ $message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($uncached as $item): ?>
+                        <?php foreach ($uncached as $stcwca_item): ?>
                         <tr>
-                            <td><strong><?php echo esc_html($item['title']); ?></strong></td>
+                            <td><strong><?php echo esc_html($stcwca_item['title']); ?></strong></td>
                             <td>
-                                <span class="stcwca-type-badge stcwca-type-<?php echo esc_attr($item['type']); ?>">
-                                    <?php echo esc_html(ucfirst($item['type'])); ?>
+                                <span class="stcwca-type-badge stcwca-type-<?php echo esc_attr($stcwca_item['type']); ?>">
+                                    <?php echo esc_html(ucfirst($stcwca_item['type'])); ?>
                                 </span>
                             </td>
-                            <td><?php echo esc_html(gmdate('Y-m-d H:i', strtotime($item['modified']))); ?></td>
+                            <td><?php echo esc_html(gmdate('Y-m-d H:i', strtotime($stcwca_item['modified']))); ?></td>
                             <td>
-                                <button class="button button-small copy-link-button" data-url="<?php echo esc_url($item['url']); ?>" title="<?php esc_attr_e('Copy URL to clipboard', 'stcw-coverage-analytics'); ?>">
+                                <button class="button button-small copy-link-button" data-url="<?php echo esc_url($stcwca_item['url']); ?>" title="<?php esc_attr_e('Copy URL to clipboard', 'stcw-coverage-analytics'); ?>">
                                     <span class="dashicons dashicons-admin-links"></span>
                                     <?php esc_html_e('Copy Link', 'stcw-coverage-analytics'); ?>
                                 </button>
@@ -148,16 +150,16 @@ $message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($cached as $item): ?>
+                        <?php foreach ($cached as $stcwca_item): ?>
                         <tr>
-                            <td><strong><?php echo esc_html($item['title']); ?></strong></td>
+                            <td><strong><?php echo esc_html($stcwca_item['title']); ?></strong></td>
                             <td>
-                                <span class="stcwca-type-badge stcwca-type-<?php echo esc_attr($item['type']); ?>">
-                                    <?php echo esc_html(ucfirst($item['type'])); ?>
+                                <span class="stcwca-type-badge stcwca-type-<?php echo esc_attr($stcwca_item['type']); ?>">
+                                    <?php echo esc_html(ucfirst($stcwca_item['type'])); ?>
                                 </span>
                             </td>
                             <td>
-                                <?php echo esc_html(human_time_diff($item['cached_time'], time())); ?>
+                                <?php echo esc_html(human_time_diff($stcwca_item['cached_time'], time())); ?>
                                 <?php esc_html_e('ago', 'stcw-coverage-analytics'); ?>
                             </td>
                         </tr>
