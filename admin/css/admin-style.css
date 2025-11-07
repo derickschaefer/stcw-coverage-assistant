@@ -1,0 +1,95 @@
+/**
+ * Coverage Analytics Admin Styles
+ * Modern card-based UI styling
+ */
+
+/* Modern card-based UI styling */
+.stcwca-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.stcwca-card h3,
+.stcwca-panel-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #23282d;
+}
+
+.stcwca-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 4px 0 6px;
+    color: #1d2327;
+}
+
+.stcwca-value.stcwca-good {
+    color: #46b450;
+}
+
+.stcwca-value.stcwca-warning {
+    color: #f0b849;
+}
+
+.stcwca-value.stcwca-bad {
+    color: #dc3232;
+}
+
+.stcwca-label {
+    font-size: 13px;
+    color: #646970;
+}
+
+.stcwca-panel {
+    margin-top: 20px;
+}
+
+/* Type badges */
+.stcwca-type-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stcwca-type-post {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.stcwca-type-page {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* Count badge */
+.stcwca-count-badge {
+    display: inline-block;
+    background: #2271b1;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* Table styling */
+.widefat td,
+.widefat th {
+    vertical-align: middle;
+}
+
+/* Chart container */
+#stcwca-trend-chart {
+    width: 100%;
+    height: auto;
+}
