@@ -5,7 +5,7 @@ Tags: static site, cache, analytics, coverage, monitoring
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires Plugins: static-cache-wrangler
@@ -20,7 +20,6 @@ Get instant visibility into your static cache coverage with a modern, card-based
 
 * **Coverage Percentage** - See at a glance what % of your content is cached
 * **Uncached Content List** - Identify exactly which pages need caching
-* **Trend Visualization** - Track coverage over 30 days with Chart.js
 * **One-Click Actions** - Visit uncached pages directly from the dashboard
 * **Cache Statistics** - View total files, cache size, and more
 
@@ -30,7 +29,7 @@ Perfect for site owners who want to ensure complete static site generation befor
 
 * **Visual Dashboard** - Modern card-based UI with 4 key metrics
 * **Coverage Cards** - Color-coded indicators (green/yellow/red) for quick status checks
-* **30-Day Trend Chart** - Interactive Chart.js visualization of coverage over time
+* **WP-CLI Support** - Command-line interface support including cache completion command
 * **Uncached Content Table** - Complete list with page titles, types, and last modified dates
 * **Recently Cached** - See the last 10 pages that were successfully cached
 * **Quick Actions** - Direct links to Static Cache settings and trend data refresh
@@ -204,12 +203,62 @@ For issues, feature requests, and general support:
 == Screenshots ==
 
 1. Coverage dashboard showing 78.3% coverage with color-coded metric cards
-2. 30-day trend chart visualizing coverage growth over time (requires Chart.js)
-3. Uncached content table with "Visit Now" action buttons
+2. Available CLI commands
+3. Uncached content table with "Copy Link" action buttons
 4. Recently cached content showing last 10 successfully cached pages
 5. Quick actions sidebar with links to parent plugin settings
 
 == Changelog ==
+
+= 1.0.5 - 2025-11-07 =
+
+**New: WP-CLI Support**
+
+* Introduced `wp scw` CLI commands for coverage management:
+  * `wp scw coverage` – Display current cache stats (table, JSON, CSV, YAML)
+  * `wp scw uncached` – List uncached pages/posts with filtering and formats
+  * `wp scw uncached-urls` – Export uncached URLs for external crawlers
+  * `wp scw crawl-uncached` – Automatically crawl and cache all missing pages
+* CLI output includes warning indicators, progress bars, and real-time status
+* Ideal for CI/CD pipelines, cron jobs, and batch caching automation
+* Extensive format and concurrency options for advanced scripting
+
+= 1.0.4 - 2025-09-29 =
+
+**Enhancement: File Counting & Cache Stats**
+
+* Added display of **total cached file count** and **total content items**
+* New metric for **cache size in MB** added to dashboard
+* Improved support for custom file paths during coverage analysis
+* Admin UI: tooltip hints added to clarify coverage formula
+
+= 1.0.3 - 2025-08-10 =
+
+**Fixes + Compliance**
+
+* Fixed bug with incorrect uncached post count in rare conditions
+* Escaped all admin output strings for WordPress.org security compliance
+* Removed legacy helper functions and optimized trend chart data handling
+* Improved compatibility with Static Cache Wrangler 2.0.5
+
+= 1.0.2 - 2025-06-21 =
+
+**Improvements: Accuracy & Performance**
+
+* Refined coverage percentage calculation logic for mixed post statuses
+* Added logic to exclude drafts, private posts, and trashed items from stats
+* Reduced database queries on the dashboard by ~30% for faster load
+* Trend data update now debounced to avoid duplicate entries on rapid refresh
+
+= 1.0.1 - 2025-04-18 =
+
+**Initial Fixes and Minor Enhancements**
+
+* Fixed issue where some pages were misidentified as uncached
+* Added "Last Cached" timestamp to recently cached list
+* Adjusted color thresholds for coverage indicators (green/yellow/red)
+* Internal refactoring of coverage engine for extensibility
+* Minor styling tweaks for better mobile admin view
 
 = 1.0.0 - 2025-01-15 =
 
@@ -231,7 +280,7 @@ For issues, feature requests, and general support:
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of Coverage Analytics companion plugin. Requires Static Cache Wrangler 2.0.4+ and Chart.js (user must add separately) for full functionality.
+Initial release of Coverage Analytics companion plugin. Requires Static Cache Wrangler 2.0.5 and WP-CLI (separate install from https://wp-cli.org) for full functionality.
 
 == Additional Information ==
 
@@ -248,13 +297,7 @@ Created by **Derick Schaefer** - Developer, writer, and WordPress enthusiast.
 
 = Planned Features =
 
-* Custom post type support
-* Multisite compatibility
-* CSV export of coverage data
-* Email notifications for low coverage
-* Automated crawling scheduler
-* Advanced filtering options
-* Coverage goals and alerts
+* TBD based on use cases and community feedback
 
 = Contributing =
 

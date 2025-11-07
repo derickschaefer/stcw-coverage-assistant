@@ -3,7 +3,7 @@
  * Handles Copy Link functionality with modern UX
  *
  * @package STCWCoverageAnalytics
- * @since 1.2.0
+ * @since 1.0.0
  */
 
 jQuery(document).ready(function($) {

@@ -1,9 +1,9 @@
 <?php
 /**
- * Coverage Analytics Dashboard Template (Improved UX)
+ * Coverage Analytics Dashboard Template (with CLI Commands)
  *
  * @package STCWCoverageAnalytics
- * @since 1.2.0
+ * @since 1.0.0
  */
 
 if (!defined('ABSPATH')) exit;
@@ -192,13 +192,42 @@ $message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'
             </div>
 
             <div class="stcwca-card">
-                <h2 class="stcwca-panel-title"><?php esc_html_e('Tips', 'stcw-coverage-analytics'); ?></h2>
-                <ul style="font-size:13px;line-height:1.8;margin-left:20px;">
-                    <li><?php esc_html_e('Copy uncached links for automated crawling', 'stcw-coverage-analytics'); ?></li>
-                    <li><?php esc_html_e('Visit uncached pages to generate static files', 'stcw-coverage-analytics'); ?></li>
-                    <li><?php esc_html_e('Check this dashboard regularly to track progress', 'stcw-coverage-analytics'); ?></li>
-                    <li><?php esc_html_e('100% coverage ensures complete offline functionality', 'stcw-coverage-analytics'); ?></li>
-                </ul>
+                <h2 class="stcwca-panel-title"><?php esc_html_e('WP-CLI Commands', 'stcw-coverage-analytics'); ?></h2>
+                <p style="font-size:13px;line-height:1.6;margin-bottom:12px;">
+                    <?php esc_html_e('Automate cache monitoring and generation via command line:', 'stcw-coverage-analytics'); ?>
+                </p>
+                <div style="background:#f6f7f7;border-left:3px solid #2271b1;padding:12px;margin-bottom:12px;border-radius:3px;">
+                    <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
+                        <strong>wp scw coverage</strong>
+                    </code>
+                    <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
+                        <?php esc_html_e('Show coverage statistics', 'stcw-coverage-analytics'); ?>
+                    </p>
+                    
+                    <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
+                        <strong>wp scw uncached</strong>
+                    </code>
+                    <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
+                        <?php esc_html_e('List all uncached pages', 'stcw-coverage-analytics'); ?>
+                    </p>
+                    
+                    <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
+                        <strong>wp scw uncached-urls</strong>
+                    </code>
+                    <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
+                        <?php esc_html_e('Export URLs for automation', 'stcw-coverage-analytics'); ?>
+                    </p>
+                    
+                    <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
+                        <strong>wp scw crawl-uncached</strong>
+                    </code>
+                    <p style="font-size:12px;color:#646970;margin:0;line-height:1.4;">
+                        <?php esc_html_e('Auto-cache all uncached pages', 'stcw-coverage-analytics'); ?>
+                    </p>
+                </div>
+                <p style="font-size:12px;color:#646970;line-height:1.6;margin:0;">
+                    <?php esc_html_e('Use --help flag for full command options and examples.', 'stcw-coverage-analytics'); ?>
+                </p>
             </div>
 
         </div>

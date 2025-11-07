@@ -5,7 +5,7 @@
  * Handles admin interface for coverage analytics
  *
  * @package STCWCoverageAnalytics
- * @since 1.2.0
+ * @since 1.0.0
  */
 
 if (!defined('ABSPATH')) exit;
