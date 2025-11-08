@@ -186,10 +186,10 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
             <div class="stcwca-card">
                 <h2 class="stcwca-panel-title"><?php esc_html_e('About Coverage Assistant', 'stcw-coverage-assistant'); ?></h2>
                 <p style="font-size:13px;line-height:1.6;">
-                    <?php esc_html_e('This plugin monitors which posts and pages have been cached by Static Cache Wrangler.', 'stcw-coverage-assistant'); ?>
+                    <?php esc_html_e('This free companion plugin monitors which posts and pages have been cached by Static Cache Wrangler.', 'stcw-coverage-assistant'); ?>
                 </p>
                 <p style="font-size:13px;line-height:1.6;margin-top:10px;">
-                    <?php esc_html_e('To increase coverage, copy and crawl the uncached links while static generation is enabled.', 'stcw-coverage-assistant'); ?>
+                    <?php esc_html_e('To increase coverage, copy uncached links and paste into an unauthenticated browser or use the CLI while static generation is enabled.', 'stcw-coverage-assistant'); ?>
                 </p>
             </div>
 

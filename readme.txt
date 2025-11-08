@@ -126,34 +126,7 @@ This plugin follows all WordPress.org Plugin Directory guidelines:
 
 = Does this work without Static Cache Wrangler? =
 
-No, this is a companion plugin that requires Static Cache Wrangler 2.0.4 or higher to be installed and activated. It will show an admin notice if the parent plugin is missing.
-
-= Why isn't the trend chart displaying? =
-
-The trend chart requires Chart.js to be added to your WordPress site. This plugin does not bundle Chart.js to comply with WordPress.org guidelines. See the Installation section for instructions on adding Chart.js via your theme.
-
-= How do I add Chart.js? =
-
-Download Chart.js from https://www.chartjs.org/ and add it to your theme's `js` folder. Then enqueue it in your theme's `functions.php`:
-
-`
-function my_enqueue_chartjs() {
-    if (is_admin()) {
-        wp_enqueue_script('chartjs', get_template_directory_uri() . '/js/chart.min.js', [], '4.4.0', true);
-    }
-}
-add_action('admin_enqueue_scripts', 'my_enqueue_chartjs');
-`
-
-= Can I use the plugin without the trend chart? =
-
-Yes! All other features work perfectly without Chart.js. You'll still see:
-* Coverage percentage cards
-* Uncached content list
-* Recently cached pages
-* All statistics and metrics
-
-The trend chart is optional but recommended for tracking progress over time.
+No, this is a companion plugin that requires Static Cache Wrangler 2.0.5 or higher to be installed and activated. It will show an admin notice if the parent plugin is missing.
 
 = How often is coverage data updated? =
 
