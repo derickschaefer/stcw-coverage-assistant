@@ -1,4 +1,4 @@
-# WP-CLI Commands for Coverage Analytics
+# WP-CLI Commands for Coverage Assistant
 
 This plugin extends the `wp scw` namespace with coverage-related commands.
 
@@ -263,7 +263,7 @@ usage: wp scw clear
 ## Troubleshooting
 
 **Q: Command not found**  
-A: Make sure Coverage Analytics plugin is activated and WP-CLI is installed
+A: Make sure Coverage Assistant plugin is activated and WP-CLI is installed
 
 **Q: "Static generation is not enabled" error**  
 A: Enable static generation in Static Cache settings first: `wp scw enable`

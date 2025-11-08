@@ -2,9 +2,9 @@
 /**
  * Admin Dashboard
  *
- * Handles admin interface for coverage analytics
+ * Handles admin interface for coverage assistant
  *
- * @package STCWCoverageAnalytics
+ * @package STCWCoverageAssistant
  * @since 1.0.0
  */
 
@@ -26,10 +26,10 @@ class STCWCA_Admin {
     public function add_submenu() {
         add_submenu_page(
             'static-cache-wrangler',
-            __('Coverage Analytics', 'stcw-coverage-analytics'),
-            __('Coverage Analytics', 'stcw-coverage-analytics'),
+            __('Coverage Assistant', 'stcw-coverage-assistant'),
+            __('Coverage Assistant', 'stcw-coverage-assistant'),
             'manage_options',
-            'stcw-coverage-analytics',
+            'stcw-coverage-assistant',
             [$this, 'render_page']
         );
     }
@@ -40,7 +40,7 @@ class STCWCA_Admin {
      * @param string $hook Current admin page hook
      */
     public function enqueue_assets($hook) {
-        if ($hook !== 'static-cache_page_stcw-coverage-analytics') {
+        if ($hook !== 'static-cache_page_stcw-coverage-assistant') {
             return;
         }
 
@@ -73,7 +73,7 @@ class STCWCA_Admin {
     public function render_page() {
         if (!current_user_can('manage_options')) {
             wp_die(
-                esc_html__('You do not have sufficient permissions to access this page.', 'stcw-coverage-analytics')
+                esc_html__('You do not have sufficient permissions to access this page.', 'stcw-coverage-assistant')
             );
         }
 

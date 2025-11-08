@@ -1,5 +1,5 @@
 /**
- * Coverage Analytics Admin JavaScript
+ * Coverage Assistant Admin JavaScript
  * Handles Copy Link functionality with modern UX
  *
  * @package STCWCoverageAnalytics

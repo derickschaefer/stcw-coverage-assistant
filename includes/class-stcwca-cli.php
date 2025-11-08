@@ -1,10 +1,10 @@
 <?php
 /**
- * WP-CLI Commands for Coverage Analytics
+ * WP-CLI Commands for Coverage Assistant
  *
  * Extends the 'wp scw' namespace with coverage-related commands
  *
- * @package STCWCoverageAnalytics
+ * @package STCWCoverageAssistant
  * @since 1.0.5
  */
 
@@ -15,7 +15,7 @@ if (!class_exists('WP_CLI')) {
 }
 
 /**
- * Coverage Analytics CLI Commands
+ * Coverage Assistant CLI Commands
  */
 class STCWCA_CLI {
 
@@ -49,7 +49,7 @@ class STCWCA_CLI {
         $format = isset($assoc_args['format']) ? $assoc_args['format'] : 'table';
 
         if (!class_exists('STCWCA_Core')) {
-            WP_CLI::error('Coverage Analytics plugin is not active.');
+            WP_CLI::error('Coverage Assistant plugin is not active.');
         }
 
         $coverage = STCWCA_Core::get_coverage_data();
@@ -169,7 +169,7 @@ class STCWCA_CLI {
         $format = isset($assoc_args['format']) ? $assoc_args['format'] : 'table';
 
         if (!class_exists('STCWCA_Core')) {
-            WP_CLI::error('Coverage Analytics plugin is not active.');
+            WP_CLI::error('Coverage Assistant plugin is not active.');
         }
 
         $uncached = STCWCA_Core::get_uncached_content($limit);
@@ -245,7 +245,7 @@ class STCWCA_CLI {
         $limit = isset($assoc_args['limit']) ? absint($assoc_args['limit']) : 0;
 
         if (!class_exists('STCWCA_Core')) {
-            WP_CLI::error('Coverage Analytics plugin is not active.');
+            WP_CLI::error('Coverage Assistant plugin is not active.');
         }
 
         $uncached = STCWCA_Core::get_uncached_content($limit);
@@ -314,7 +314,7 @@ class STCWCA_CLI {
         $concurrency = max(1, min(10, $concurrency));
 
         if (!class_exists('STCWCA_Core')) {
-            WP_CLI::error('Coverage Analytics plugin is not active.');
+            WP_CLI::error('Coverage Assistant plugin is not active.');
         }
 
         // Check if static generation is enabled
@@ -364,7 +364,7 @@ class STCWCA_CLI {
                     'timeout' => 30,
                     'sslverify' => false,
                     'headers' => [
-                        'User-Agent' => 'WP-CLI/Coverage-Analytics-Crawler',
+                        'User-Agent' => 'WP-CLI/Coverage-Assistant-Crawler',
                     ],
                 ]);
 

@@ -1,4 +1,4 @@
-# Static Cache Wrangler - Coverage Analytics
+# Static Cache Wrangler - Coverage Assistant
 
 Monitor cache coverage and identify uncached content for Static Cache Wrangler.
 
@@ -32,14 +32,14 @@ See [CLI-COMMANDS.md](CLI-COMMANDS.md) for complete documentation and examples.
 
 ## Installation
 1. Install and activate Static Cache Wrangler first
-2. Upload this plugin to `wp-content/plugins/stcw-coverage-analytics/`
+2. Upload this plugin to `wp-content/plugins/stcw-coverage-assistant/`
 3. Activate the plugin
-4. Navigate to **Static Cache > Coverage Analytics**
+4. Navigate to **Static Cache > Coverage Assistant**
 
 ## Directory Structure
 ```
-stcw-coverage-analytics/
-├── stcw-coverage-analytics.php    Main plugin file
+stcw-coverage-assistant/
+├── stcw-coverage-assistant.php    Main plugin file
 ├── LICENSE                        GPL v2+
 ├── README.md                      This file
 ├── CLI-COMMANDS.md                WP-CLI documentation

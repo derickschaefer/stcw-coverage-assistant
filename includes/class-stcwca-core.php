@@ -1,10 +1,10 @@
 <?php
 /**
- * Coverage Analytics Core
+ * Coverage Assistant Core
  *
  * Calculates cache coverage statistics and identifies uncached content
  *
- * @package STCWCoverageAnalytics
+ * @package STCWCoverageAssistant
  * @since 1.0.0
  */
 

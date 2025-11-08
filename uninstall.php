@@ -1,11 +1,11 @@
 <?php
 /**
- * Uninstall Script for Static Cache Wrangler - Coverage Analytics
+ * Uninstall Script for Static Cache Wrangler - Coverage Assistant
  *
  * Fired when the plugin is uninstalled. Removes all plugin data
  * and options from the database.
  *
- * @package STCWCoverageAnalytics
+ * @package STCWCoverageAssistant
  * @since 1.0.0
  */
 

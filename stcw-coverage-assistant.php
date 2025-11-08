@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Static Cache Wrangler - Coverage Analytics
+ * Plugin Name: Static Cache Wrangler - Coverage Assistant
  * Plugin URI: https://moderncli.dev/code/static-cache-wrangler/
  * Description: Monitor cache coverage and identify uncached content for Static Cache Wrangler
  * Version: 1.0.5
  * Author: Derick Schaefer
  * Author URI: https://moderncli.dev/author/
- * Text Domain: stcw-coverage-analytics
+ * Text Domain: stcw-coverage-assistant
  * Requires at least: 5.0
  * Tested up to: 6.8
  * Requires PHP: 7.4
@@ -38,7 +38,7 @@ function stcwca_is_stcw_active() { return class_exists('STCW_Core'); }
 
 function stcwca_admin_notice_missing_stcw() {
     if (!stcwca_is_stcw_active()) {
-        echo '<div class="notice notice-error"><p><strong>' . esc_html__('Static Cache Wrangler - Coverage Analytics', 'stcw-coverage-analytics') . '</strong> ' . esc_html__('requires', 'stcw-coverage-analytics') . ' <strong>' . esc_html__('Static Cache Wrangler', 'stcw-coverage-analytics') . '</strong> ' . esc_html__('to be installed and activated.', 'stcw-coverage-analytics') . '</p></div>';
+        echo '<div class="notice notice-error"><p><strong>' . esc_html__('Static Cache Wrangler - Coverage Assistant', 'stcw-coverage-assistant') . '</strong> ' . esc_html__('requires', 'stcw-coverage-assistant') . ' <strong>' . esc_html__('Static Cache Wrangler', 'stcw-coverage-assistant') . '</strong> ' . esc_html__('to be installed and activated.', 'stcw-coverage-assistant') . '</p></div>';
     }
 }
 add_action('admin_notices', 'stcwca_admin_notice_missing_stcw');
@@ -59,8 +59,8 @@ add_action('plugins_loaded', 'stcwca_init');
 register_activation_hook(__FILE__, function() {
     if (!stcwca_is_stcw_active()) {
         wp_die(
-            esc_html__('This plugin requires Static Cache Wrangler to be installed and activated.', 'stcw-coverage-analytics'),
-            esc_html__('Plugin Activation Error', 'stcw-coverage-analytics'),
+            esc_html__('This plugin requires Static Cache Wrangler to be installed and activated.', 'stcw-coverage-assistant'),
+            esc_html__('Plugin Activation Error', 'stcw-coverage-assistant'),
             ['back_link' => true]
         );
     }

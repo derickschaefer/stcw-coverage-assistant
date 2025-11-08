@@ -1,7 +1,7 @@
-=== Static Cache Wrangler - Coverage Analytics ===
+=== Static Cache Wrangler - Coverage Assistant ===
 Contributors: derickschaefer
 Donate link: https://moderncli.dev/
-Tags: static site, cache, analytics, coverage, monitoring
+Tags: static site, cache, assistant, coverage, monitoring
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -14,7 +14,7 @@ Monitor cache coverage and identify uncached content for Static Cache Wrangler.
 
 == Description ==
 
-**Coverage Analytics** is a companion plugin for [Static Cache Wrangler](https://wordpress.org/plugins/static-cache-wrangler/) that helps you monitor which posts and pages have been cached as static HTML files.
+**Coverage Assistant** is a companion plugin for [Static Cache Wrangler](https://wordpress.org/plugins/static-cache-wrangler/) that helps you monitor which posts and pages have been cached as static HTML files.
 
 Get instant visibility into your static cache coverage with a modern, card-based dashboard that shows:
 
@@ -53,10 +53,10 @@ Perfect for site owners who want to ensure complete static site generation befor
 
 = How It Works =
 
-1. Install and activate both Static Cache Wrangler and Coverage Analytics
+1. Install and activate both Static Cache Wrangler and Coverage Assistant
 2. Enable static site generation in Static Cache settings
 3. Browse your site normally - pages are cached as you visit them
-4. Check the Coverage Analytics dashboard to see progress
+4. Check the Coverage Assistant dashboard to see progress
 5. Use the uncached content list to identify pages that need visiting
 6. Click "Visit Now" buttons to generate static files immediately
 7. Monitor the 30-day trend to track coverage over time
@@ -100,10 +100,10 @@ This plugin follows all WordPress.org Plugin Directory guidelines:
 
 1. Log in to your WordPress admin panel
 2. Navigate to **Plugins > Add New**
-3. Search for "Static Cache Wrangler - Coverage Analytics"
+3. Search for "Static Cache Wrangler - Coverage Assistant"
 4. Click **Install Now** then **Activate**
 5. Ensure Static Cache Wrangler is also installed and activated
-6. Navigate to **Static Cache > Coverage Analytics**
+6. Navigate to **Static Cache > Coverage Assistant**
 
 = Manual Installation =
 
@@ -113,13 +113,13 @@ This plugin follows all WordPress.org Plugin Directory guidelines:
 4. Choose the downloaded ZIP file
 5. Click **Install Now** then **Activate**
 6. Ensure Static Cache Wrangler is also installed and activated
-7. Navigate to **Static Cache > Coverage Analytics**
+7. Navigate to **Static Cache > Coverage Assistant**
 
 = After Installation =
 
 1. Go to **Settings > Static Cache** and enable static generation
 2. Browse your site to generate some cached pages
-3. Go to **Static Cache > Coverage Analytics** to view your dashboard
+3. Go to **Static Cache > Coverage Assistant** to view your dashboard
 4. (Optional) Add Chart.js to enable the trend chart visualization
 
 == Frequently Asked Questions ==
@@ -182,7 +182,7 @@ Currently, the plugin only monitors standard posts and pages. Custom post type s
 = How can I get 100% coverage quickly? =
 
 1. Enable static generation in Static Cache Wrangler
-2. Visit the Coverage Analytics dashboard
+2. Visit the Coverage Assistant dashboard
 3. Click "Visit Now" on each uncached page
 4. Or use WP-CLI: `wp scw process` (if parent plugin supports it)
 
@@ -197,8 +197,8 @@ Not tested yet. Multisite compatibility is planned for a future release.
 = Where can I get support? =
 
 For issues, feature requests, and general support:
-* GitHub Issues: https://github.com/derickschaefer/stcw-coverage-analytics/issues
-* WordPress.org Support Forum: https://wordpress.org/support/plugin/stcw-coverage-analytics/
+* GitHub Issues: https://github.com/derickschaefer/stcw-assistant/issues
+* WordPress.org Support Forum: https://wordpress.org/support/plugin/stcw-coverage-assistant/
 
 == Screenshots ==
 
@@ -207,7 +207,6 @@ For issues, feature requests, and general support:
 3. Uncached content table with "Copy Link" action buttons
 4. Recently cached content showing last 10 successfully cached pages
 5. Quick actions sidebar with links to parent plugin settings
-
 == Changelog ==
 
 = 1.0.5 - 2025-11-07 =
@@ -280,7 +279,7 @@ For issues, feature requests, and general support:
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of Coverage Analytics companion plugin. Requires Static Cache Wrangler 2.0.5 and WP-CLI (separate install from https://wp-cli.org) for full functionality.
+Initial release of Coverage Assistant companion plugin. Requires Static Cache Wrangler 2.0.5 and WP-CLI (separate install from https://wp-cli.org) for full functionality.
 
 == Additional Information ==
 
@@ -303,9 +302,9 @@ Created by **Derick Schaefer** - Developer, writer, and WordPress enthusiast.
 
 This is an open-source project. Contributions are welcome!
 
-* GitHub Repository: https://github.com/derickschaefer/stcw-coverage-analytics
-* Submit Issues: https://github.com/derickschaefer/stcw-coverage-analytics/issues
-* Pull Requests: https://github.com/derickschaefer/stcw-coverage-analytics/pulls
+* GitHub Repository: https://github.com/derickschaefer/stcw-assistant
+* Submit Issues: https://github.com/derickschaefer/stcw-assistant/issues
+* Pull Requests: https://github.com/derickschaefer/stcw-assistant/pulls
 
 = License =
 
@@ -388,8 +387,8 @@ This plugin is GDPR compliant as it:
 **File Structure**
 
 `
-stcw-coverage-analytics/
-├── stcw-coverage-analytics.php    Main plugin file
+stcw-coverage-assistant/
+├── stcw-coverage-assistant.php    Main plugin file
 ├── LICENSE                        GPL v2+ license
 ├── readme.txt                     This file
 ├── uninstall.php                  Clean removal script
