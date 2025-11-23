@@ -261,4 +261,50 @@ class STCWCA_Core {
         
         return $trend_data;
     }
+
+    /**
+     * Get the coverage threshold for GUI crawler availability
+     *
+     * @return int Percentage threshold (default 65)
+     */
+    public static function get_gui_crawler_threshold() {
+        // Check for wp-config.php override
+        if (defined('STCWCA_GUI_CRAWLER_THRESHOLD')) {
+            return absint(STCWCA_GUI_CRAWLER_THRESHOLD);
+        }
+
+        // Default to 65%
+        return 65;
+    }
+
+    /**
+     * Check if GUI crawler is available based on coverage
+     *
+     * @return bool True if coverage meets threshold
+     */
+    public static function is_gui_crawler_available() {
+        $coverage = self::get_coverage_data();
+        $threshold = self::get_gui_crawler_threshold();
+
+        return $coverage['coverage_percent'] >= $threshold;
+    }
+
+    /**
+     * Get pages needed to unlock GUI crawler
+     *
+     * @return int Number of pages that need to be cached
+     */
+    public static function get_pages_to_unlock() {
+        $coverage = self::get_coverage_data();
+        $threshold = self::get_gui_crawler_threshold();
+
+        if ($coverage['coverage_percent'] >= $threshold) {
+            return 0;
+        }
+
+        $target_cached = ceil(($threshold / 100) * $coverage['total_content']);
+        $pages_needed = $target_cached - $coverage['cached_files'];
+
+        return max(0, $pages_needed);
+    }
 }

@@ -1,11 +1,11 @@
 === Static Cache Wrangler - Coverage Assistant ===
 Contributors: derickschaefer
 Donate link: https://moderncli.dev/
-Tags: static site, cache, assistant, coverage, monitoring
+Tags: static cache wrangler, static cache, offline, html, static html
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires Plugins: static-cache-wrangler
@@ -29,10 +29,13 @@ Perfect for site owners who want to ensure complete static site generation befor
 
 * **Visual Dashboard** - Modern card-based UI with 4 key metrics
 * **Coverage Cards** - Color-coded indicators (green/yellow/red) for quick status checks
-* **WP-CLI Support** - Command-line interface support including cache completion command
 * **Uncached Content Table** - Complete list with page titles, types, and last modified dates
+* **One-Click Copy Links** - Copy uncached URLs to clipboard for manual caching
 * **Recently Cached** - See the last 10 pages that were successfully cached
-* **Quick Actions** - Direct links to Static Cache settings and trend data refresh
+* **Auto-Cache Command** - Use `wp scw crawl-uncached` to automatically cache all remaining pages
+* **WP-CLI Integration** - Full command-line interface for coverage monitoring and automation
+* **Batch Processing** - Concurrent crawling with `--concurrency` flag for faster cache generation
+* **Export URLs** - `wp scw uncached-urls` outputs URLs for piping to external tools
 * **Zero Configuration** - Works immediately after activation
 * **Clean Uninstall** - Removes all data when plugin is deleted
 
@@ -61,38 +64,6 @@ Perfect for site owners who want to ensure complete static site generation befor
 6. Click "Visit Now" buttons to generate static files immediately
 7. Monitor the 30-day trend to track coverage over time
 
-= Chart.js Setup =
-
-To display the trend chart, you must add Chart.js to your WordPress site separately. This plugin does not bundle Chart.js to comply with WordPress.org guidelines.
-
-**Option 1: Add via Theme**
-Add this to your theme's `functions.php`:
-
-`
-function my_enqueue_chartjs() {
-    if (is_admin()) {
-        wp_enqueue_script('chartjs', get_template_directory_uri() . '/js/chart.min.js', [], '4.4.0', true);
-    }
-}
-add_action('admin_enqueue_scripts', 'my_enqueue_chartjs');
-`
-
-**Option 2: Download Chart.js**
-Download from: https://www.chartjs.org/docs/latest/getting-started/installation.html
-
-Place `chart.min.js` in your theme's `js` folder and use the code above.
-
-= WordPress.org Compliance =
-
-This plugin follows all WordPress.org Plugin Directory guidelines:
-
-* All output properly escaped
-* All input sanitized
-* Database queries use `$wpdb->prepare()`
-* Scripts and styles properly enqueued
-* No external resources loaded
-* Clean uninstall removes all data
-* Proper text domain for translations
 
 == Installation ==
 
@@ -130,11 +101,11 @@ No, this is a companion plugin that requires Static Cache Wrangler 2.0.5 or high
 
 = How often is coverage data updated? =
 
-Coverage statistics are calculated in real-time when you visit the dashboard. Trend data snapshots are stored once per day automatically. You can manually refresh trend data using the "Refresh Trend Data" button.
+Coverage statistics are calculated in real-time when you visit the dashboard.
 
 = What data does this plugin store? =
 
-The plugin stores one WordPress option: `stcwca_coverage_trend` - an array containing up to 30 days of daily coverage snapshots. This data is automatically cleaned (keeps last 30 days) and completely removed when you uninstall the plugin.
+This plugin does not store any persistent data in the WordPress database. All coverage statistics are calculated in real-time when you view the dashboard. No options, settings, or historical data are saved.
 
 = Does this plugin cache anything itself? =
 
@@ -156,12 +127,16 @@ Currently, the plugin only monitors standard posts and pages. Custom post type s
 
 1. Enable static generation in Static Cache Wrangler
 2. Visit the Coverage Assistant dashboard
-3. Click "Visit Now" on each uncached page
-4. Or use WP-CLI: `wp scw process` (if parent plugin supports it)
+3. Use the fastest method:
+   * **Automated:** Run `wp scw crawl-uncached --concurrency=4` to auto-cache everything
+   * **Manual:** Click "Copy Link" on each uncached page and visit them in a browser
+4. Check progress with `wp scw coverage` or refresh the dashboard
+
+The `crawl-uncached` command is the fastest way to achieve 100% coverage - it automatically visits all uncached URLs to trigger static file generation.
 
 = What happens if I uninstall the plugin? =
 
-All plugin data is automatically removed, including the `stcwca_coverage_trend` option. Your static cached files created by Static Cache Wrangler remain untouched.
+The plugin stores no persistent data, so uninstalling simply removes the plugin files. Your static cached files created by Static Cache Wrangler remain completely untouched and continue to function normally.
 
 = Is this compatible with multisite? =
 
@@ -181,6 +156,13 @@ For issues, feature requests, and general support:
 4. Recently cached content showing last 10 successfully cached pages
 5. Quick actions sidebar with links to parent plugin settings
 == Changelog ==
+
+= 1.0.6 - 2025-11-09 =
+
+**Fixes and Docs: UI Tweaks and  Readme Update**
+
+* Copy clarifications on multiple UI cards
+* Readme updates and corrections
 
 = 1.0.5 - 2025-11-07 =
 
@@ -305,11 +287,7 @@ This plugin does not:
 
 **Data Storage**
 
-The plugin stores one WordPress option (`stcwca_coverage_trend`) containing:
-* Daily coverage percentages (last 30 days)
-* Number of cached files per day
-* Total content count per day
-* Timestamps (server time, not user time)
+The plugin does not store any data in the WordPress database. All coverage statistics are calculated in real-time from your existing WordPress posts and pages. No historical data, user information, or statistics are stored.
 
 This data is:
 * Stored locally in your WordPress database
@@ -329,10 +307,11 @@ This plugin is GDPR compliant as it:
 
 **Database Usage**
 
-* Uses one WordPress option: `stcwca_coverage_trend`
+* No WordPress options created or stored
 * No custom database tables created
 * No database schema modifications
-* Clean uninstall removes all data
+* Queries existing WordPress posts table only (read-only)
+* Clean uninstall (nothing to remove)
 
 **Performance**
 

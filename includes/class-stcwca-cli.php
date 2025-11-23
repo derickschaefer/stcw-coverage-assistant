@@ -258,8 +258,7 @@ class STCWCA_CLI {
             WP_CLI::line($item['url']);
         }
     }
-
-    /**
+/**
      * Automatically crawl and cache all uncached content
      *
      * Visits each uncached URL to trigger static file generation.
@@ -322,8 +321,6 @@ class STCWCA_CLI {
         if (defined('STCW_STATIC_ENABLED')) {
             $is_enabled = STCW_STATIC_ENABLED;
         } elseif (class_exists('STCW_Core')) {
-            // Fallback: check the option directly if constant isn't defined
-            // Parent plugin uses 'stcw_enabled' option
             $is_enabled = get_option('stcw_enabled', false);
         }
         
@@ -353,64 +350,39 @@ class STCWCA_CLI {
         $error_count = 0;
         $errors = [];
 
-        // Process URLs
+        // Process URLs using shared crawler
         foreach (array_chunk($uncached, $concurrency) as $chunk) {
             foreach ($chunk as $item) {
                 $url = $item['url'];
                 $title = $item['title'];
 
-                // Make request to generate static file
-                $response = wp_remote_get($url, [
-                    'timeout' => 30,
-                    'sslverify' => false,
-                    'headers' => [
-                        'User-Agent' => 'WP-CLI/Coverage-Assistant-Crawler',
-                    ],
-                ]);
+                // Use shared crawler method
+                $result = STCWCA_Crawler::process_single_url($url);
 
-                if (is_wp_error($response)) {
+                if ($result['success']) {
+                    $success_count++;
+                    
+                    if ($verbose) {
+                        WP_CLI::log(sprintf(
+                            'Cached: %s (%s)',
+                            WP_CLI::colorize('%G' . $title . '%n'),
+                            $url
+                        ));
+                    }
+                } else {
                     $error_count++;
                     $errors[] = [
                         'url' => $url,
                         'title' => $title,
-                        'error' => $response->get_error_message(),
+                        'error' => $result['error'],
                     ];
                     
                     if ($verbose) {
                         WP_CLI::warning(sprintf(
                             'Failed: %s - %s',
                             $title,
-                            $response->get_error_message()
+                            $result['error']
                         ));
-                    }
-                } else {
-                    $status_code = wp_remote_retrieve_response_code($response);
-                    
-                    if ($status_code === 200) {
-                        $success_count++;
-                        
-                        if ($verbose) {
-                            WP_CLI::log(sprintf(
-                                'Cached: %s (%s)',
-                                WP_CLI::colorize('%G' . $title . '%n'),
-                                $url
-                            ));
-                        }
-                    } else {
-                        $error_count++;
-                        $errors[] = [
-                            'url' => $url,
-                            'title' => $title,
-                            'error' => sprintf('HTTP %d', $status_code),
-                        ];
-                        
-                        if ($verbose) {
-                            WP_CLI::warning(sprintf(
-                                'Failed: %s - HTTP %d',
-                                $title,
-                                $status_code
-                            ));
-                        }
                     }
                 }
 

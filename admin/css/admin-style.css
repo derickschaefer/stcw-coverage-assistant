@@ -177,3 +177,77 @@
 .widefat td .button:last-child {
     margin-right: 0;
 }
+
+/**
+ * GUI Crawler Styles
+ * @since 1.0.6
+ */
+
+/* Crawler Card */
+.stcwca-crawler-card {
+    margin-bottom: 20px;
+}
+
+/* Progress Bar */
+.stcwca-progress-bar-wrapper {
+    margin: 20px 0;
+}
+
+.stcwca-progress-bar {
+    background: #f0f0f0;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #ddd;
+}
+
+.stcwca-progress-fill {
+    background: linear-gradient(90deg, #2271b1 0%, #135e96 100%);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Stats Grid */
+.stcwca-crawl-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Progress to Threshold Bar */
+.stcwca-progress-to-threshold {
+    margin-top: 20px;
+}
+
+/* Buttons */
+#stcwca-start-crawl {
+    font-size: 15px;
+    height: auto;
+    padding: 10px 20px;
+}
+
+#stcwca-stop-crawl {
+    background: #dc3232;
+    border-color: #dc3232;
+    color: #fff;
+}
+
+#stcwca-stop-crawl:hover {
+    background: #b32d2e;
+    border-color: #b32d2e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+    .stcwca-crawl-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
