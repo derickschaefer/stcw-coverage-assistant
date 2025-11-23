@@ -43,8 +43,7 @@ Perfect for site owners who want to ensure complete static site generation befor
 
 * WordPress 5.0 or higher
 * PHP 7.4 or higher
-* **Static Cache Wrangler 2.0.4+** (parent plugin must be active)
-* **Chart.js** (for trend visualization - see FAQ for setup)
+* **Static Cache Wrangler 2.0.5+** (parent plugin must be active)
 
 = Perfect For =
 
@@ -62,7 +61,6 @@ Perfect for site owners who want to ensure complete static site generation befor
 4. Check the Coverage Assistant dashboard to see progress
 5. Use the uncached content list to identify pages that need visiting
 6. Click "Visit Now" buttons to generate static files immediately
-7. Monitor the 30-day trend to track coverage over time
 
 
 == Installation ==
@@ -91,7 +89,6 @@ Perfect for site owners who want to ensure complete static site generation befor
 1. Go to **Settings > Static Cache** and enable static generation
 2. Browse your site to generate some cached pages
 3. Go to **Static Cache > Coverage Assistant** to view your dashboard
-4. (Optional) Add Chart.js to enable the trend chart visualization
 
 == Frequently Asked Questions ==
 
@@ -155,6 +152,7 @@ For issues, feature requests, and general support:
 3. Uncached content table with "Copy Link" action buttons
 4. Recently cached content showing last 10 successfully cached pages
 5. Quick actions sidebar with links to parent plugin settings
+
 == Changelog ==
 
 = 1.0.6 - 2025-11-09 =
