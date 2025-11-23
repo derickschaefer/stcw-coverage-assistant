@@ -192,12 +192,10 @@ For issues, feature requests, and general support:
 
 == Screenshots ==
 
-1. Coverage dashboard showing 78.3% coverage with color-coded metric cards
-2. Available CLI commands for automation and batch processing
-3. Uncached content table with "Copy Link" action buttons
+1. Coverage dashboard showing 28.6% coverage with color-coded metric cards
+2. Instructions and available CLI commands for automation and batch processing
+3. Cached content passes 65% threshold enabling batch processing in GUI
 4. GUI crawler interface with adaptive throttling and progress tracking
-5. Recently cached content showing last 10 successfully cached pages
-6. Quick actions sidebar with links to parent plugin settings
 
 == Changelog ==
 
