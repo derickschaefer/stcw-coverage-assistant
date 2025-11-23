@@ -20,7 +20,8 @@ Get instant visibility into your static cache coverage with a modern, card-based
 
 * **Coverage Percentage** - See at a glance what % of your content is cached
 * **Uncached Content List** - Identify exactly which pages need caching
-* **One-Click Actions** - Visit uncached pages directly from the dashboard
+* **One-Click Copy Links** - Copy uncached URLs to clipboard for manual caching
+* **GUI Crawler** - Interactive browser-based crawler unlocks at 65% coverage
 * **Cache Statistics** - View total files, cache size, and more
 
 Perfect for site owners who want to ensure complete static site generation before deploying to CDN, Amazon S3®, or creating offline copies.
@@ -31,6 +32,8 @@ Perfect for site owners who want to ensure complete static site generation befor
 * **Coverage Cards** - Color-coded indicators (green/yellow/red) for quick status checks
 * **Uncached Content Table** - Complete list with page titles, types, and last modified dates
 * **One-Click Copy Links** - Copy uncached URLs to clipboard for manual caching
+* **GUI Crawler** - Interactive browser-based crawler with progress tracking (unlocks at 65% coverage)
+* **Adaptive Throttling** - Smart crawling speed adjusts to your server's performance
 * **Recently Cached** - See the last 10 pages that were successfully cached
 * **Auto-Cache Command** - Use `wp scw crawl-uncached` to automatically cache all remaining pages
 * **WP-CLI Integration** - Full command-line interface for coverage monitoring and automation
@@ -59,8 +62,10 @@ Perfect for site owners who want to ensure complete static site generation befor
 2. Enable static site generation in Static Cache settings
 3. Browse your site normally - pages are cached as you visit them
 4. Check the Coverage Assistant dashboard to see progress
-5. Use the uncached content list to identify pages that need visiting
-6. Click "Visit Now" buttons to generate static files immediately
+5. Use the uncached content list to identify pages that need caching
+6. Click "Copy Link" buttons to copy URLs for manual visiting
+7. **NEW:** At 65% coverage, unlock the GUI crawler to batch-process remaining pages
+8. **Alternative:** Use `wp scw crawl-uncached` CLI command for fastest bulk caching
 
 
 == Installation ==
@@ -110,7 +115,20 @@ No, this plugin only monitors caching done by Static Cache Wrangler. It does not
 
 = How do I know which pages need caching? =
 
-The dashboard shows an "Uncached Content" table listing all posts and pages that haven't been cached yet. Each row includes a "Visit Now" button to generate the static file immediately.
+The dashboard shows an "Uncached Content" table listing all posts and pages that haven't been cached yet. Each row includes a "Copy Link" button to copy the URL to your clipboard for easy visiting.
+
+= What is the GUI crawler and how do I unlock it? =
+
+The GUI crawler is an interactive, browser-based tool that automatically visits and caches your uncached pages. It unlocks when you reach 65% cache coverage. This threshold ensures you've naturally cached the most important pages first, and the crawler is used only to finish the remaining less-visited pages.
+
+You can adjust this threshold in wp-config.php:
+```php
+define('STCWCA_GUI_CRAWLER_THRESHOLD', 70); // Default is 65
+```
+
+= How fast is the GUI crawler? =
+
+The GUI crawler uses adaptive throttling to respect your server's capabilities. It automatically speeds up on fast servers and slows down if errors occur. Typical processing speed is 1-2 pages per second, adjusting in real-time based on server response times.
 
 = Can I exclude certain pages from the uncached list? =
 
@@ -124,12 +142,39 @@ Currently, the plugin only monitors standard posts and pages. Custom post type s
 
 1. Enable static generation in Static Cache Wrangler
 2. Visit the Coverage Assistant dashboard
-3. Use the fastest method:
-   * **Automated:** Run `wp scw crawl-uncached --concurrency=4` to auto-cache everything
+3. Choose your preferred method:
+   * **Fastest (CLI):** Run `wp scw crawl-uncached --concurrency=4` to auto-cache everything
+   * **Browser-based:** Once you reach 65% coverage, use the GUI crawler to finish remaining pages
    * **Manual:** Click "Copy Link" on each uncached page and visit them in a browser
 4. Check progress with `wp scw coverage` or refresh the dashboard
 
-The `crawl-uncached` command is the fastest way to achieve 100% coverage - it automatically visits all uncached URLs to trigger static file generation.
+The `crawl-uncached` CLI command is the fastest way to achieve 100% coverage - it automatically visits all uncached URLs to trigger static file generation.
+
+= What WP-CLI commands are available? =
+
+Coverage Assistant extends the `wp scw` namespace with these commands:
+
+* `wp scw coverage` - Display coverage statistics (supports --format=json, csv, yaml)
+* `wp scw uncached` - List all uncached content with filtering options
+* `wp scw uncached-urls` - Export URLs for piping to external crawlers
+* `wp scw crawl-uncached` - Automatically visit and cache all uncached pages
+
+Example usage:
+```
+# Show current coverage
+wp scw coverage
+
+# Auto-cache everything with 4 concurrent requests
+wp scw crawl-uncached --concurrency=4
+
+# Export uncached URLs to file
+wp scw uncached-urls > uncached.txt
+
+# Pipe to wget for caching
+wp scw uncached-urls | wget -i -
+```
+
+See CLI.md in the plugin directory for complete documentation.
 
 = What happens if I uninstall the plugin? =
 
@@ -148,19 +193,26 @@ For issues, feature requests, and general support:
 == Screenshots ==
 
 1. Coverage dashboard showing 78.3% coverage with color-coded metric cards
-2. Available CLI commands
+2. Available CLI commands for automation and batch processing
 3. Uncached content table with "Copy Link" action buttons
-4. Recently cached content showing last 10 successfully cached pages
-5. Quick actions sidebar with links to parent plugin settings
+4. GUI crawler interface with adaptive throttling and progress tracking
+5. Recently cached content showing last 10 successfully cached pages
+6. Quick actions sidebar with links to parent plugin settings
 
 == Changelog ==
 
 = 1.0.6 - 2025-11-09 =
 
-**Fixes and Docs: UI Tweaks and  Readme Update**
+**New: GUI Crawler + Fixes**
 
+* Introduced interactive GUI crawler for browser-based batch caching
+* GUI crawler unlocks at 65% coverage (configurable via wp-config.php)
+* Adaptive throttling automatically adjusts crawl speed to server performance
+* Real-time progress tracking with success/error counts
+* Smart delay calculation prevents server overload
 * Copy clarifications on multiple UI cards
 * Readme updates and corrections
+* Removed legacy trend tracking feature (not actively used)
 
 = 1.0.5 - 2025-11-07 =
 
@@ -190,7 +242,7 @@ For issues, feature requests, and general support:
 
 * Fixed bug with incorrect uncached post count in rare conditions
 * Escaped all admin output strings for WordPress.org security compliance
-* Removed legacy helper functions and optimized trend chart data handling
+* Removed legacy helper functions and optimized data handling
 * Improved compatibility with Static Cache Wrangler 2.0.5
 
 = 1.0.2 - 2025-06-21 =
@@ -200,7 +252,6 @@ For issues, feature requests, and general support:
 * Refined coverage percentage calculation logic for mixed post statuses
 * Added logic to exclude drafts, private posts, and trashed items from stats
 * Reduced database queries on the dashboard by ~30% for faster load
-* Trend data update now debounced to avoid duplicate entries on rapid refresh
 
 = 1.0.1 - 2025-04-18 =
 
@@ -217,22 +268,26 @@ For issues, feature requests, and general support:
 **Initial Release**
 
 * Coverage percentage calculation and display
-* 30-day trend tracking with Chart.js visualization
 * Uncached content identification and listing
 * Recently cached content display
 * Modern card-based dashboard UI
 * Color-coded status indicators (green/yellow/red)
-* One-click "Visit Now" buttons for uncached pages
+* One-click "Copy Link" buttons for uncached pages
 * Quick actions sidebar
-* Manual trend data refresh
 * WordPress.org coding standards compliance
 * Clean uninstall support
 * Full i18n/translation readiness
 
 == Upgrade Notice ==
 
+= 1.0.6 =
+Major update: New GUI crawler for browser-based batch caching! Unlocks at 65% coverage with adaptive throttling. Also includes WP-CLI commands for automation.
+
+= 1.0.5 =
+New WP-CLI commands added! Use `wp scw crawl-uncached` for fastest bulk caching. See CLI.md for full documentation.
+
 = 1.0.0 =
-Initial release of Coverage Assistant companion plugin. Requires Static Cache Wrangler 2.0.5 and WP-CLI (separate install from https://wp-cli.org) for full functionality.
+Initial release of Coverage Assistant companion plugin. Requires Static Cache Wrangler 2.0.5 or higher.
 
 == Additional Information ==
 
@@ -249,7 +304,11 @@ Created by **Derick Schaefer** - Developer, writer, and WordPress enthusiast.
 
 = Planned Features =
 
-* TBD based on use cases and community feedback
+* Custom post type support
+* Multisite compatibility
+* Configurable exclusion rules
+* Advanced filtering options
+* Enhanced reporting and analytics
 
 = Contributing =
 
@@ -289,8 +348,6 @@ The plugin does not store any data in the WordPress database. All coverage stati
 
 This data is:
 * Stored locally in your WordPress database
-* Automatically cleaned (keeps 30 days)
-* Completely removed on plugin uninstall
 * Not shared with any third parties
 
 **GDPR Compliance**
@@ -317,6 +374,7 @@ This plugin is GDPR compliant as it:
 * Queries optimized with prepared statements
 * No frontend performance impact
 * Dashboard-only calculations (not run on frontend)
+* GUI crawler uses adaptive throttling to prevent server overload
 
 **Security**
 
@@ -325,6 +383,7 @@ This plugin is GDPR compliant as it:
 * All input sanitized (`sanitize_text_field`, `sanitize_key`, `absint`)
 * Capability checks on all admin functions
 * Nonce verification on all form submissions
+* AJAX endpoints protected with nonce validation
 
 **Compatibility**
 
@@ -332,27 +391,31 @@ This plugin is GDPR compliant as it:
 * PHP 7.4, 8.0, 8.1, 8.2, 8.3
 * Compatible with all major themes
 * Compatible with all major page builders
-* Compatible with Static Cache Wrangler 2.0.4+
+* Compatible with Static Cache Wrangler 2.0.5+
 
 **File Structure**
 
-`
+```
 stcw-coverage-assistant/
 ├── stcw-coverage-assistant.php    Main plugin file
 ├── LICENSE                        GPL v2+ license
 ├── readme.txt                     This file
+├── CLI.md                         WP-CLI documentation
 ├── uninstall.php                  Clean removal script
 ├── includes/
-│   └── class-stcwca-core.php     Coverage calculation engine
+│   ├── class-stcwca-core.php     Coverage calculation engine
+│   ├── class-stcwca-cli.php      WP-CLI commands
+│   └── class-stcwca-crawler.php  Shared crawler logic
 └── admin/
     ├── class-stcwca-admin.php    Admin dashboard controller
     ├── css/
     │   └── admin-style.css       Modern UI styling
     ├── js/
-    │   └── admin-script.js       Chart.js integration
+    │   ├── admin-script.js       Copy Link functionality
+    │   └── crawler.js            GUI crawler with adaptive throttling
     └── views/
         └── dashboard.php         Dashboard template
-`
+```
 
 **Code Quality**
 
@@ -362,3 +425,6 @@ stcw-coverage-assistant/
 * Proper PHPDoc comments throughout
 * Meaningful variable and function names
 * DRY principles applied
+
+**Interested in learning more about command-line interfaces and WP-CLI?**
+Check out [ModernCLI.dev](https://moderncli.dev) — a practical guide to mastering modern CLI workflows.
