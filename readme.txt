@@ -160,7 +160,7 @@ Coverage Assistant extends the `wp scw` namespace with these commands:
 * `wp scw crawl-uncached` - Automatically visit and cache all uncached pages
 
 Example usage:
-```
+
 # Show current coverage
 wp scw coverage
 
@@ -172,7 +172,6 @@ wp scw uncached-urls > uncached.txt
 
 # Pipe to wget for caching
 wp scw uncached-urls | wget -i -
-```
 
 See CLI.md in the plugin directory for complete documentation.
 
@@ -189,6 +188,7 @@ Not tested yet. Multisite compatibility is planned for a future release.
 For issues, feature requests, and general support:
 * GitHub Issues: https://github.com/derickschaefer/stcw-assistant/issues
 * WordPress.org Support Forum: https://wordpress.org/support/plugin/stcw-coverage-assistant/
+* [Coverage Assistant Home](https://moderncli.dev/code/stcw-coverage-assistant/)
 
 == Screenshots ==
 
@@ -315,7 +315,7 @@ This is an open-source project. Contributions are welcome!
 * GitHub Repository: https://github.com/derickschaefer/stcw-assistant
 * Submit Issues: https://github.com/derickschaefer/stcw-assistant/issues
 * Pull Requests: https://github.com/derickschaefer/stcw-assistant/pulls
-
+* More details and examples: [Modern CLI Book](https://moderncli.dev/code/stcw-coverage-assistant/)
 = License =
 
 This plugin is licensed under the GNU General Public License v2.0 or later.
@@ -393,27 +393,24 @@ This plugin is GDPR compliant as it:
 
 **File Structure**
 
-```
-stcw-coverage-assistant/
-├── stcw-coverage-assistant.php    Main plugin file
-├── LICENSE                        GPL v2+ license
-├── readme.txt                     This file
-├── CLI.md                         WP-CLI documentation
-├── uninstall.php                  Clean removal script
-├── includes/
-│   ├── class-stcwca-core.php     Coverage calculation engine
-│   ├── class-stcwca-cli.php      WP-CLI commands
-│   └── class-stcwca-crawler.php  Shared crawler logic
-└── admin/
-    ├── class-stcwca-admin.php    Admin dashboard controller
-    ├── css/
-    │   └── admin-style.css       Modern UI styling
-    ├── js/
-    │   ├── admin-script.js       Copy Link functionality
-    │   └── crawler.js            GUI crawler with adaptive throttling
-    └── views/
-        └── dashboard.php         Dashboard template
-```
+    stcw-coverage-assistant/
+        stcw-coverage-assistant.php    Main plugin file
+        LICENSE                        GPL v2+ license
+        readme.txt                     This file
+        uninstall.php                  Clean removal script
+        includes/
+            class-stcwca-core.php      Coverage calculation engine
+            class-stcwca-cli.php       WP-CLI commands
+            class-stcwca-crawler.php   Shared crawler logic
+        admin/
+            class-stcwca-admin.php     Admin dashboard controller
+            css/
+                admin-style.css        Modern UI styling
+            js/
+                admin-script.js        Copy Link functionality
+                crawler.js             GUI crawler with adaptive throttling
+            views/
+                dashboard.php          Dashboard template
 
 **Code Quality**
 
