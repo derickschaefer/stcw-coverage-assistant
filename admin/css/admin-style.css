@@ -1,15 +1,110 @@
 /**
- * Coverage Aassistant Admin Styles
+ * Coverage Assistant Admin Styles
  * Modern card-based UI styling with toast notifications
  */
 
-/* Modern card-based UI styling */
+/* Layout Structure */
+.stcwca-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+    gap: 20px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Two-column layout - super specific selectors */
+.wrap .stcwca-layout,
+div.wrap div.stcwca-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    align-items: flex-start !important;
+    margin-top: 20px !important;
+    flex-wrap: nowrap !important;
+}
+
+.wrap .stcwca-main-content,
+div.wrap div.stcwca-main-content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 340px) !important;
+}
+
+.wrap .stcwca-sidebar,
+div.wrap div.stcwca-sidebar {
+    width: 320px !important;
+    flex: 0 0 320px !important;
+    min-width: 320px !important;
+}
+
+/* Responsive breakpoint for smaller screens */
+@media (max-width: 1024px) {
+    .wrap .stcwca-layout,
+    div.wrap div.stcwca-layout {
+        flex-wrap: wrap !important;
+    }
+    
+    .wrap .stcwca-main-content,
+    div.wrap div.stcwca-main-content {
+        max-width: 100% !important;
+    }
+    
+    .wrap .stcwca-sidebar,
+    div.wrap div.stcwca-sidebar {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+}
+
+/* Card Styling */
 .stcwca-card {
     background: #fff;
     border: 1px solid #ccd0d4;
     border-radius: 6px;
     padding: 20px;
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+/* Cards inside grid don't need bottom margin (grid gap handles it) */
+.stcwca-grid .stcwca-card {
+    margin-bottom: 0 !important;
+}
+
+/* Cards in main content and sidebar need bottom margin - FORCE IT */
+.stcwca-main-content .stcwca-card,
+.wrap .stcwca-main-content .stcwca-card,
+div.wrap div.stcwca-main-content div.stcwca-card {
+    margin-bottom: 20px !important;
+}
+
+.stcwca-sidebar .stcwca-card,
+.wrap .stcwca-sidebar .stcwca-card,
+div.wrap div.stcwca-sidebar div.stcwca-card {
+    margin-bottom: 20px !important;
+}
+
+/* First child gets no top margin (for alignment) */
+.stcwca-main-content .stcwca-card:first-child,
+.wrap .stcwca-main-content .stcwca-card:first-child,
+div.wrap div.stcwca-main-content div.stcwca-card:first-child {
+    margin-top: 0 !important;
+}
+
+.stcwca-sidebar .stcwca-card:first-child,
+.wrap .stcwca-sidebar .stcwca-card:first-child,
+div.wrap div.stcwca-sidebar div.stcwca-card:first-child {
+    margin-top: 0 !important;
+}
+
+/* Last child gets no bottom margin */
+.stcwca-main-content .stcwca-card:last-child,
+.wrap .stcwca-main-content .stcwca-card:last-child {
+    margin-bottom: 0 !important;
+}
+
+.stcwca-sidebar .stcwca-card:last-child,
+.wrap .stcwca-sidebar .stcwca-card:last-child {
+    margin-bottom: 0 !important;
 }
 
 .stcwca-card h3,
@@ -242,6 +337,15 @@
 #stcwca-stop-crawl:hover {
     background: #b32d2e;
     border-color: #b32d2e;
+}
+
+/* Sidebar button spacing */
+.stcwca-sidebar .button {
+    margin-bottom: 10px !important;
+}
+
+.stcwca-sidebar .button:last-of-type {
+    margin-bottom: 0 !important;
 }
 
 /* Responsive adjustments */

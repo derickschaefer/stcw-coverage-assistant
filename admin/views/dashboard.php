@@ -3,7 +3,7 @@
  * Coverage Assistant Dashboard Template
  *
  * @package STCWCoverageAssistant
- * @since 1.0.6
+ * @since 1.0.7
  */
 
 if (!defined('ABSPATH')) {
@@ -23,6 +23,22 @@ $stcwca_messages = [
 // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only display of success message, no data processing
 $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['message'])) : '';
 ?>
+<style type="text/css">
+/* Failsafe inline styles for layout */
+.wrap .stcwca-grid { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important; gap: 20px !important; margin-bottom: 20px !important; }
+.wrap .stcwca-layout { display: flex !important; gap: 20px !important; align-items: flex-start !important; flex-wrap: nowrap !important; }
+.wrap .stcwca-main-content { flex: 1 1 auto !important; min-width: 0 !important; }
+.wrap .stcwca-sidebar { width: 320px !important; flex: 0 0 320px !important; }
+.wrap .stcwca-main-content .stcwca-card { margin-bottom: 20px !important; }
+.wrap .stcwca-sidebar .stcwca-card { margin-bottom: 20px !important; }
+.wrap .stcwca-main-content .stcwca-card:first-child { margin-top: 0 !important; }
+.wrap .stcwca-sidebar .stcwca-card:first-child { margin-top: 0 !important; }
+.wrap .stcwca-main-content .stcwca-card:last-child { margin-bottom: 0 !important; }
+.wrap .stcwca-sidebar .stcwca-card:last-child { margin-bottom: 0 !important; }
+.stcwca-sidebar .button { margin-bottom: 10px !important; }
+.stcwca-sidebar .button:last-of-type { margin-bottom: 0 !important; }
+</style>
+
 <div class="wrap">
     <h1><?php esc_html_e('Coverage Assistant', 'stcw-coverage-assistant'); ?></h1>
 
@@ -33,7 +49,7 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
     <?php endif; ?>
 
     <!-- Coverage Summary Cards -->
-    <div class="stcwca-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px;">
+    <div class="stcwca-grid">
 
         <div class="stcwca-card">
             <h3><?php esc_html_e('Coverage', 'stcw-coverage-assistant'); ?></h3>
@@ -90,10 +106,10 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
         </div>
     </div>
 
-    <div class="stcwca-layout" style="display:flex;gap:20px;align-items:flex-start;margin-top:20px;">
+    <div class="stcwca-layout">
 
         <!-- Main Column -->
-        <div style="flex:1;min-width:0;">
+        <div class="stcwca-main-content">
 
             <?php if (!empty($uncached)): ?>
             <!-- Uncached Content Panel -->
@@ -481,7 +497,7 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
         </div>
 
         <!-- Sidebar -->
-        <div style="width:320px;flex:0 0 320px;">
+        <div class="stcwca-sidebar">
 
             <div class="stcwca-card">
                 <h2 class="stcwca-panel-title"><?php esc_html_e('Quick Actions', 'stcw-coverage-assistant'); ?></h2>
