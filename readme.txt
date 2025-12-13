@@ -5,7 +5,7 @@ Tags: static cache wrangler, static cache, offline, html, static html
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires Plugins: static-cache-wrangler
@@ -152,26 +152,26 @@ The `crawl-uncached` CLI command is the fastest way to achieve 100% coverage - i
 
 = What WP-CLI commands are available? =
 
-Coverage Assistant extends the `wp scw` namespace with these commands:
+Coverage Assistant extends the `wp scw-coverage` namespace with the following commands:
 
-* `wp scw coverage` - Display coverage statistics (supports --format=json, csv, yaml)
-* `wp scw uncached` - List all uncached content with filtering options
-* `wp scw uncached-urls` - Export URLs for piping to external crawlers
-* `wp scw crawl-uncached` - Automatically visit and cache all uncached pages
+* `wp scw-coverage stats` – Show coverage statistics (supports `--format=json`, `csv`, `yaml`)
+* `wp scw-coverage list` – List all uncached URLs with filtering options
+* `wp scw-coverage urls` – Export URLs for piping to external crawlers or automation
+* `wp scw-coverage crawl` – Automatically visit and cache all uncached URLs
 
 Example usage:
 
 # Show current coverage
-wp scw coverage
+wp scw-coverage stats
 
 # Auto-cache everything with 4 concurrent requests
-wp scw crawl-uncached --concurrency=4
+wp scw-coverage crawl --concurrency=4
 
 # Export uncached URLs to file
-wp scw uncached-urls > uncached.txt
+wp scw-coverage urls > uncached.txt
 
 # Pipe to wget for caching
-wp scw uncached-urls | wget -i -
+wp scw-coverage urls | wget -i -
 
 See CLI.md in the plugin directory for complete documentation.
 
@@ -198,6 +198,14 @@ For issues, feature requests, and general support:
 4. GUI crawler interface with adaptive throttling and progress tracking
 
 == Changelog ==
+
+= 1.1.0 2025-12-13 =
+
+**WP-CLI Namespace Refactor (Breaking Change)**
+
+* Refactored WP-CLI command namespace to `wp scw-coverage` for consistency with the parent plugin and upcoming companion plugins
+* Improved long-term maintainability and discoverability of CLI commands
+* **Breaking change:** Existing `wp scw` coverage-related commands must be updated to the new namespace
 
 = 1.0.7 - 2025-12-02 =
 
@@ -284,6 +292,10 @@ For issues, feature requests, and general support:
 * Full i18n/translation readiness
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+**Breaking change:** WP-CLI command namespace has been refactored to `wp scw-coverage` for consistency with the parent plugin and upcoming companion plugins.  
+If you use CLI automation or scripts, you must update existing commands to the new namespace.
 
 = 1.0.6 =
 Major update: New GUI crawler for browser-based batch caching! Unlocks at 65% coverage with adaptive throttling. Also includes WP-CLI commands for automation.

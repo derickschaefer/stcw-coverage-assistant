@@ -3,7 +3,7 @@
  * Coverage Assistant Dashboard Template
  *
  * @package STCWCoverageAssistant
- * @since 1.0.7
+ * @since 1.1.0
  */
 
 if (!defined('ABSPATH')) {
@@ -208,7 +208,7 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
                         </p>
                         <p style="margin: 0 0 8px 0;">
                             <code style="background: #f0f0f0; padding: 6px 10px; border-radius: 3px; font-size: 13px; display: inline-block;">
-                                wp scw crawl-uncached --concurrency=4
+                                wp scw-coverage crawl --concurrency=4
                             </code>
                         </p>
                         
@@ -298,7 +298,7 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
                         </p>
                         <p style="margin: 0 0 8px 0;">
                             <code style="background: #f0f0f0; padding: 6px 10px; border-radius: 3px; font-size: 13px; display: inline-block;">
-                                wp scw crawl-uncached --concurrency=4
+                                wp scw-coverage crawl --concurrency=4
                             </code>
                         </p>
                         
@@ -526,28 +526,28 @@ $stcwca_message_key = isset($_GET['message']) ? sanitize_key(wp_unslash($_GET['m
                 </p>
                 <div style="background:#f6f7f7;border-left:3px solid #2271b1;padding:12px;margin-bottom:12px;border-radius:3px;">
                     <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
-                        <strong>wp scw coverage</strong>
+                        <strong>wp scw-coverage stats</strong>
                     </code>
                     <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
                         <?php esc_html_e('Show coverage statistics', 'stcw-coverage-assistant'); ?>
                     </p>
                     
                     <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
-                        <strong>wp scw uncached</strong>
+                        <strong>wp scw-coverage list</strong>
                     </code>
                     <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
                         <?php esc_html_e('List all uncached URLs', 'stcw-coverage-assistant'); ?>
                     </p>
                     
                     <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
-                        <strong>wp scw uncached-urls</strong>
+                        <strong>wp scw-coverage urls</strong>
                     </code>
                     <p style="font-size:12px;color:#646970;margin:0 0 8px 0;line-height:1.4;">
                         <?php esc_html_e('Export URLs for automation', 'stcw-coverage-assistant'); ?>
                     </p>
                     
                     <code style="font-size:12px;display:block;margin-bottom:6px;color:#1d2327;">
-                        <strong>wp scw crawl-uncached</strong>
+                        <strong>wp scw-coverage crawl</strong>
                     </code>
                     <p style="font-size:12px;color:#646970;margin:0;line-height:1.4;">
                         <?php esc_html_e('Auto-cache all uncached URLs', 'stcw-coverage-assistant'); ?>

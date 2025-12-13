@@ -3,7 +3,7 @@
  * Plugin Name: Static Cache Wrangler - Coverage Assistant
  * Plugin URI: https://moderncli.dev/code/static-cache-wrangler/
  * Description: Monitor cache coverage and identify uncached content for Static Cache Wrangler
- * Version: 1.0.7
+ * Version: 1.1.0
  * Author: Derick Schaefer
  * Author URI: https://moderncli.dev/author/
  * Text Domain: stcw-coverage-assistant
