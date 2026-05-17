@@ -3,9 +3,9 @@ Contributors: derickschaefer
 Donate link: https://moderncli.dev/
 Tags: static cache wrangler, static cache, offline, html, static html
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires Plugins: static-cache-wrangler
@@ -198,6 +198,10 @@ For issues, feature requests, and general support:
 4. GUI crawler interface with adaptive throttling and progress tracking
 
 == Changelog ==
+
+= 1.1.1 2026-05-17 =
+
+**Confirmed compatibility with WordPress 7.0**
 
 = 1.1.0 2025-12-13 =
 
